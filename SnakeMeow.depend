@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1619770432 source:c:\users\admin\desktop\test\snakemeow\main.cpp
+	"Snake.h"
+	<time.h>
+	<random>
+
+1619775098 c:\users\admin\desktop\test\snakemeow\snake.h
+	<stdio.h>
+	<SDL.h>
+	<SDL_mixer.h>
+	<string>
+	<fstream>
+
+1619944921 source:c:\users\admin\desktop\test\snakemeow\snake.cpp
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<SDL_mixer.h>
+	<iostream>
+	<random>
+	<fstream>
+	"Snake.h"
+
