@@ -102,7 +102,7 @@ void Snake::draw() {
     // Draw game elements
     //////////////////////
     renderTexture(printscore, renderer, PADDING_SIDES+3, 10, nullptr);        // Score
-    renderTexture(printhighscore, renderer, SCREEN_WIDTH/2+205, 10, nullptr); // Highscore
+    renderTexture(printhighscore, renderer, SCREEN_WIDTH/2+200, 10, nullptr); // Highscore
     renderTexture(texture, renderer, itemX, itemY, &snakeClips[1]);           // item
     renderTexture(texture, renderer, headX, headY, &snakeClips[0]);           // snake head
 
@@ -244,8 +244,8 @@ void Snake::logic() {
     if(tailCollision()) {
         // Render GAME OVER message
         SDL_Color fontcolour = { 255, 255, 255, 255 };
-        printgameover = renderText("GAME OVER", "src\\GreenFlame.ttf", fontcolour, 60, renderer);                   // hien thi GAME OVER
-        printreplay = renderText("Press spacebar to continue or press ESC to exit game", "src\\GreenFlame.ttf", fontcolour, 13, renderer);    // hien thi Press spacebar to continue
+        printgameover = renderText("GAME OVER", "src\\Square.ttf", fontcolour, 60, renderer);                   // hien thi GAME OVER
+        printreplay = renderText("Press spacebar to continue or press ESC to exit game", "src\\Square.ttf", fontcolour, 13, renderer);    // hien thi Press spacebar to continue
         wantPlayAgain = true;
     }
 
@@ -295,7 +295,7 @@ void Snake::updateScore() {
 
     std::string scorestring = std::to_string(score);
     std::string scoremsg = "score: " + scorestring;
-    printscore = renderText(scoremsg, "src\\GreenFlame.ttf", fontcolour, 16, renderer);
+    printscore = renderText(scoremsg, "src\\Square.ttf", fontcolour, 16, renderer);
 }
 
 void Snake::updateHighScore() {
@@ -318,7 +318,7 @@ void Snake::updateHighScore() {
 
     std::string scorestring = std::to_string(highScore);
     std::string scoremsg = "highscore: " + scorestring;
-    printhighscore = renderText(scoremsg, "src\\GreenFlame.ttf", fontcolour, 16, renderer);         // hien thi Highscore
+    printhighscore = renderText(scoremsg, "src\\Square.ttf", fontcolour, 16, renderer);         // hien thi Highscore
 }
 
 void Snake::getHighScore() {
