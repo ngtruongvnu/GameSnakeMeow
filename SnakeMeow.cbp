@@ -31,6 +31,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Constant.h" />
+		<Unit filename="RandomPosFruit.h" />
 		<Unit filename="Snake.cpp" />
 		<Unit filename="Snake.h" />
 		<Unit filename="main.cpp" />

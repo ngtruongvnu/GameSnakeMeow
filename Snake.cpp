@@ -15,11 +15,11 @@
 
 Snake::Snake()
 : headX {SCREEN_CENTRE_X}, headY {SCREEN_CENTRE_Y}, tailN {0}, score {0}, gameOver {false}, wantPlayAgain {false}, pause {false} {
-    setup();
-    loop();
+    gameSetup();
+    gameLoop();
 } // Init Snake
 
-void Snake::setup() {
+void Snake::gameSetup() {
     // Set up SDL, define sprite clips and default game values.
     // Needs error checking
 
@@ -89,7 +89,7 @@ void Snake::setup() {
     itemY = posY(rng) * SPRITE_SIZE + PADDING_TOP;
 }
 
-void Snake::draw() {
+void Snake::drawElements() {
     // darkest grey shade, background
     SDL_SetRenderDrawColor(renderer, 52, 51, 50, 0);
     SDL_RenderClear(renderer);
@@ -106,7 +106,7 @@ void Snake::draw() {
     renderTexture(texture, renderer, itemX, itemY, &snakeClips[1]);           // item
     renderTexture(texture, renderer, headX, headY, &snakeClips[0]);           // snake head
 
-    // snake tail neu duoi > 0 thi render tail
+    // snake tail neu Tail > 0 thi render tail
     if (tailN > 0){
         for (int i = 0; i < tailN; ++i)
             renderTexture(texture, renderer, tailX[i], tailY[i], &snakeClips[1]);
@@ -130,7 +130,7 @@ void Snake::draw() {
     SDL_RenderPresent(renderer);                                   // Render now
 }
 
-void Snake::loop() {
+void Snake::gameLoop() {
     Uint32 frameStart, frameTime;
     SDL_Event event;
     Mix_PlayMusic(soundtrack, -1);                                           // soundtrack
@@ -159,7 +159,7 @@ void Snake::loop() {
                 }
                 if (event.key.keysym.sym == SDLK_SPACE){
                     if (wantPlayAgain == true)      // Play again when turn is over
-                        reset();
+                        makeReset();
                     else if (pause == true)
                         pause = false;
                     else if (pause == false)
@@ -168,8 +168,8 @@ void Snake::loop() {
             }
         }
         if (pause == false && tailCollision() == false){
-            logic();
-            draw();
+            gameLogic();
+            drawElements();
         }
 
         frameTime = SDL_GetTicks() - frameStart;
@@ -181,8 +181,8 @@ void Snake::loop() {
     SDL_DestroyTexture(printscore);         // giai phong printscore
     SDL_DestroyTexture(printgameover);      // giai phong printgameover
     SDL_DestroyTexture(printreplay);        // giai phong printreplay
-    Mix_FreeChunk(meow);                    // giai phong sound effect
 
+    Mix_FreeChunk(meow);                    // giai phong sound effect
     Mix_FreeMusic(soundtrack);              // giai phong nhac nen
 
     SDL_DestroyRenderer(renderer);          // giai phong renderer
@@ -194,7 +194,7 @@ void Snake::loop() {
     SDL_Quit();                             // giai phong SDL
 }
 
-void Snake::logic() {
+void Snake::gameLogic() {
     // 'Pick up' item
     if (itemCollision()){
         score += 10;
@@ -276,7 +276,7 @@ bool Snake::tailCollision() {
     return false;
 }
 
-void Snake::reset() {
+void Snake::makeReset() {
     printgameover = nullptr;
     printreplay = nullptr;
     headX = SCREEN_CENTRE_X;

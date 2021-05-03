@@ -4,14 +4,14 @@
 	<time.h>
 	<random>
 
-1620053598 c:\users\admin\desktop\test\snakemeow\snake.h
+1620063152 c:\users\admin\desktop\test\snakemeow\snake.h
 	<stdio.h>
 	<SDL.h>
 	<SDL_mixer.h>
 	<string>
 	<fstream>
 
-1620059505 source:c:\users\admin\desktop\test\snakemeow\snake.cpp
+1620060640 source:c:\users\admin\desktop\test\snakemeow\snake.cpp
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -23,7 +23,7 @@
 	"Constant.h"
 	"RandomPosFruit.h"
 
-1620059557 c:\users\admin\desktop\test\snakemeow\constant.h
+1620059766 c:\users\admin\desktop\test\snakemeow\constant.h
 
 1620054022 c:\users\admin\desktop\test\snakemeow\randomposfruit.h
 	"Snake.h"

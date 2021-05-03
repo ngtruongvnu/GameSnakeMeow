@@ -11,11 +11,11 @@ class Snake {
 public:
     Snake();
 
-    void setup();
-    void loop();
-    void draw();
-    void logic();
-    void reset();
+    void gameSetup();
+    void gameLoop();
+    void drawElements();
+    void gameLogic();
+    void makeReset();
 
     bool itemCollision();   // check collision head with fruit
     bool tailCollision();   // check collision with the tail
