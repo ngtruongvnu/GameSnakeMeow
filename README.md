@@ -13,4 +13,4 @@
 - Sử dụng các phím điểu hướng hoặc ASDW điểu khiển PHẢI XUỐNG TRÁI LÊN
 - Thua cuộc khi đầu chạm vào thân rắn
 - Khi thua nhấn SPACE để tiếp tục hoặc ESC để thoát game
-- Code có tham khảo tại https://github.com/tqlong/advprogram
+
