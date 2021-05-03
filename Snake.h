@@ -28,7 +28,7 @@ public:
     SDL_Texture* renderText(const std::string &message, const std::string &fontFile, SDL_Color color, int fontSize, SDL_Renderer *renderer);
 private:
     bool gameOver;          // bien check gameover
-    bool turnOver;          // bien check xem co muon choi lai khong
+    bool wantPlayAgain;     // bien check xem co muon choi lai khong
     bool pause;             // bien check dung lai khi dang choi
     int score;              // diem khi dang choi
     int highScore = 0;      // khoi tao diem cao lan dau bang 0
@@ -42,7 +42,7 @@ private:
     int itemX;
     int itemY;
 
-    SDL_Rect snakeClips[2];
+    SDL_Rect snakeClips[2];                         // 2 item lay trong file sprite
 
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;

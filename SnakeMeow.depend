@@ -1,17 +1,17 @@
 # depslib dependency file v1.0
-1619770432 source:c:\users\admin\desktop\test\snakemeow\main.cpp
+1620053403 source:c:\users\admin\desktop\test\snakemeow\main.cpp
 	"Snake.h"
 	<time.h>
 	<random>
 
-1619775098 c:\users\admin\desktop\test\snakemeow\snake.h
+1620053598 c:\users\admin\desktop\test\snakemeow\snake.h
 	<stdio.h>
 	<SDL.h>
 	<SDL_mixer.h>
 	<string>
 	<fstream>
 
-1619944921 source:c:\users\admin\desktop\test\snakemeow\snake.cpp
+1620054335 source:c:\users\admin\desktop\test\snakemeow\snake.cpp
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -20,4 +20,12 @@
 	<random>
 	<fstream>
 	"Snake.h"
+	"Constant.h"
+	"RandomPosFruit.h"
+
+1620053598 c:\users\admin\desktop\test\snakemeow\constant.h
+
+1620054022 c:\users\admin\desktop\test\snakemeow\randomposfruit.h
+	"Snake.h"
+	"Constant.h"
 

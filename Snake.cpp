@@ -6,39 +6,15 @@
 #include <random>
 #include <fstream>          // test file score
 #include "Snake.h"
+#include "Constant.h"
+#include "RandomPosFruit.h"
 
-// Globals
-//////////////////////
-const int SPRITE_SIZE = 32;           // kich thuoc cua cai vat the lay tu trong file anh sprite
-const int SQUARES = 21;               // de chia window thanh cac o vuong
-const int PADDING_TOP = 32;           // de ve cai phan mau den ben tren
-const int PADDING_SIDES = 8;          // de ve 3 cai canh
 
-const int SCREEN_WIDTH = SPRITE_SIZE * SQUARES;                                 // chieu rong cua cai phan man choi
-const int SCREEN_HEIGHT = SPRITE_SIZE * SQUARES;                                // chieu cao cua cai phan man choi
-const int SCREEN_CENTRE_X = PADDING_SIDES + (SCREEN_WIDTH/2)-(SPRITE_SIZE/2);   // tam cua man choi
-const int SCREEN_CENTRE_Y = PADDING_TOP + (SCREEN_HEIGHT/2)-(SPRITE_SIZE/2);    // tam cua man choi
-
-const int WINDOW_WIDTH = SCREEN_WIDTH + 2 * PADDING_SIDES;                      // chieu rong cua window
-const int WINDOW_HEIGHT = SCREEN_HEIGHT + PADDING_TOP + PADDING_SIDES;          // chieu cao cua window
-
-const int FPS = 15;                                                             // muon nhanh hay cham thi fix chi so nay
-const int FRAME_PERIOD = 1000.0f / FPS;
-
-enum direction { stop, left, right, up, down };
-direction dir { stop };
-
-// For randomly generating position of item
-std::random_device rd;
-std::mt19937 rng(rd());
-std::uniform_int_distribution<int> posX(0, SQUARES-1); // -1 to account for sprite size
-std::uniform_int_distribution<int> posY(0,SQUARES-1);
-// Tham khao in https://stackoverflow.com/questions/19665818/generate-random-numbers-using-c11-random-library/19666713
 // Snake class details
 //////////////////////
 
 Snake::Snake()
-: headX {SCREEN_CENTRE_X}, headY {SCREEN_CENTRE_Y}, tailN {0}, score {0}, gameOver {false}, turnOver {false}, pause {false} {
+: headX {SCREEN_CENTRE_X}, headY {SCREEN_CENTRE_Y}, tailN {0}, score {0}, gameOver {false}, wantPlayAgain {false}, pause {false} {
     setup();
     loop();
 } // Init Snake
@@ -90,7 +66,7 @@ void Snake::setup() {
 
     //Audio
     Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
-    meow = Mix_LoadWAV("src\\cat_meow_x.wav");        // nhac khi va cham
+    meow = Mix_LoadWAV("src\\cat_meow_x.wav");        // effect khi va cham
 
     soundtrack = Mix_LoadMUS("src\\soundtrack2.wav"); //  nhac nen
 
@@ -99,7 +75,7 @@ void Snake::setup() {
     snakeClips[0].y = 0;
     snakeClips[0].w = SPRITE_SIZE;
     snakeClips[0].h = SPRITE_SIZE;
-    // lay item dau cua snake tu file sprite
+    // lay item head cua snake tu file sprite
 
     // Set clip for item ('fruit')
     snakeClips[1].x = 0;
@@ -182,7 +158,7 @@ void Snake::loop() {
                     dir = stop;
                 }
                 if (event.key.keysym.sym == SDLK_SPACE){
-                    if (turnOver == true)      // Play again when turn is over
+                    if (wantPlayAgain == true)      // Play again when turn is over
                         reset();
                     else if (pause == true)
                         pause = false;
@@ -270,7 +246,7 @@ void Snake::logic() {
         SDL_Color fontcolour = { 255, 255, 255, 255 };
         printgameover = renderText("GAME OVER", "src\\GreenFlame.ttf", fontcolour, 60, renderer);                   // hien thi GAME OVER
         printreplay = renderText("Press spacebar to continue or press ESC to exit game", "src\\GreenFlame.ttf", fontcolour, 13, renderer);    // hien thi Press spacebar to continue
-        turnOver = true;
+        wantPlayAgain = true;
     }
 
     // When snake leaves window loop to opposite side
@@ -327,11 +303,11 @@ void Snake::updateHighScore() {
         highScore = score;
 
         // Update highscores file
-        SDL_RWops* highscores = SDL_RWFromFile("playground\\highscores.txt", "w");
+        SDL_RWops* highscores = SDL_RWFromFile("protected\\highscores.txt", "w");
         if (highscores == NULL)
         {
             printf( "Warning: Unable to open file! SDL Error: %s\n", SDL_GetError() );
-            highscores = SDL_RWFromFile("playground\\highscores.txt", "r+");
+            highscores = SDL_RWFromFile("protected\\highscores.txt", "r+");
         }
         SDL_RWwrite(highscores, &highScore, sizeof(int), 1);
         SDL_RWclose(highscores);
@@ -347,7 +323,7 @@ void Snake::updateHighScore() {
 
 void Snake::getHighScore() {
 
-    SDL_RWops* highscores = SDL_RWFromFile("playground\\highscores.txt", "r");
+    SDL_RWops* highscores = SDL_RWFromFile("protected\\highscores.txt", "r");
     if (highscores == NULL){
         std::cerr << "Error: Could not open highscores.txt or file does not exist" << std::endl;
         highScore = score;//////////
