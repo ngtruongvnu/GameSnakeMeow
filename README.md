@@ -9,8 +9,10 @@
                 -lSDL2_mixer
 
 2. CÁCH CHƠI
-- Đợi khoảng 5s 
+- Đợi khoảng 5s để hiển thị 1 hình ảnh
 - Sử dụng các phím điểu hướng hoặc ASDW điểu khiển PHẢI XUỐNG TRÁI LÊN
+- Tạm dừng chơi press SPACE
 - Thua cuộc khi đầu chạm vào thân rắn
 - Khi thua nhấn SPACE để tiếp tục hoặc ESC để thoát game
-
+- File điểm cao đã được mã hoá (https://lazyfoo.net/tutorials/SDL/33_file_reading_and_writing/index.php) nên chỉ có thể đọc và ghi file khi chơi.
+	

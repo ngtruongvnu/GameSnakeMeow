@@ -42,7 +42,7 @@ private:
     int itemX;
     int itemY;
 
-    SDL_Rect snakeClips[2];                         // 2 item lay trong file sprite
+    SDL_Rect snakeClips[2];                         // 2 items lay trong file sprite
 
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;

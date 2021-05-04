@@ -244,7 +244,7 @@ void Snake::gameLogic() {
     if(tailCollision()) {
         // Render GAME OVER message
         SDL_Color fontcolour = { 255, 255, 255, 255 };
-        printgameover = renderText("GAME OVER", "src\\Square.ttf", fontcolour, 60, renderer);                   // hien thi GAME OVER
+        printgameover = renderText("GAME OVER", "src\\Square.ttf", fontcolour, 60, renderer);                                             // hien thi GAME OVER
         printreplay = renderText("Press spacebar to continue or press ESC to exit game", "src\\Square.ttf", fontcolour, 13, renderer);    // hien thi Press spacebar to continue
         wantPlayAgain = true;
     }
@@ -259,11 +259,11 @@ void Snake::gameLogic() {
 bool Snake::itemCollision() {
     if ( headY + SPRITE_SIZE <= itemY )    // bottom_head <= top_item
         return false;
-    if ( headY >= itemY+SPRITE_SIZE )     // top_head >= bottom_item
+    if ( headY >= itemY+SPRITE_SIZE )      // top_head >= bottom_item
         return false;
-    if ( headX + SPRITE_SIZE <= itemX )   // right_head <= left_item
+    if ( headX + SPRITE_SIZE <= itemX )    // right_head <= left_item
         return false;
-    if ( headX >= itemX+SPRITE_SIZE )     // left_head >= right_item
+    if ( headX >= itemX+SPRITE_SIZE )      // left_head >= right_item
         return false;
     return true;
 }
