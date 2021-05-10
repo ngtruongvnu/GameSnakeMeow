@@ -1,6 +1,6 @@
 # GameSnakeMeow
 
-1. CACH CAI DAT
+1. CÁCH CÀI ĐẶT
 - Sử dụng c++ 11
 - linker setting : 
                 -lmingw32 -lSDL2main -lSDL2
